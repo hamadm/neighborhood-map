@@ -52,7 +52,7 @@ function AppViewModel() {
     this.locations = ko.computed(function() {
         var filter = this.filter();
         filter = filter.trim().toLowerCase();
-        if(filter == ''){
+        if(filter === ''){
             if(map)
                 resetMarkers(myLocations);
             return myLocations;
@@ -103,7 +103,7 @@ function resetMarkers(locations)
         if(myLocations[i].marker)
             myLocations[i].marker.setMap(null);
     }
-    for(var i=0; i<locations.length; i++){
+    for(i=0; i<locations.length; i++){
         if(locations[i].marker)
             locations[i].marker.setMap(map);
     }
@@ -133,7 +133,7 @@ function setContent()
                         location.marker.setAnimation(google.maps.Animation.BOUNCE);
                         window.setTimeout(function() {
                             location.marker.setAnimation(null);
-                        }, 1500)
+                        }, 1500);
                     }
                     // setting the content into info window
                     infowindow.setContent("<strong>"+location.name +"</strong><br><a href='"+location.content+"'>Click here for Wikipedia post</a>");
