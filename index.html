@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>My Locations</title>
+        <meta name="viewport" content="width=device-width,minimum-scale=1">
+
+        <link href="css/style.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="lib/stylesheets/jquery.sidr.dark.min.css">
+
+    </head>
+    <body>
+
+        <a id="simple-menu" href="#sidr">Toggle menu</a>
+
+        <div class="menu" id="sidr">
+            <h1>My Locations</h1>
+            <input type="text" data-bind="value: filter, valueUpdate: 'afterkeydown'"  placeholder="filter the locations" />
+            <ul class="locationsList" data-bind="foreach: locations">
+                <li class="locationItem" data-bind="text: name, click: function () {openInfo(marker)}"></li>
+            </ul>
+        </div>
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+
+
+
+        <!-- Scripts -->
+        <script
+                src="https://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous"></script>
+        <script src="lib/jquery.sidr.min.js"></script>
+        <script>
+            $('#simple-menu').sidr({
+                name: 'sidr',
+                source: '#sidr'
+            });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+        <script src="js/app.js"></script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-GQL6hRT41RCZajdu_8YhG97SDKdchWc&callback=initMap">
+        </script>
+
+    </body>
+</html>
