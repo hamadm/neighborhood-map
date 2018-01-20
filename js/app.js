@@ -126,27 +126,35 @@ function setContent()
                 console.log(data);
                 location.content = data[3][0];
                 // add infowindow
-                location.marker.addListener('click', function() {
-                    if (location.marker.getAnimation() !== null) {
-                        location.marker.setAnimation(null);
-                    } else {
-                        location.marker.setAnimation(google.maps.Animation.BOUNCE);
-                        window.setTimeout(function() {
+                if(location.marker){
+                    location.marker.addListener('click', function() {
+                        if (location.marker.getAnimation() !== null) {
                             location.marker.setAnimation(null);
-                        }, 1500);
-                    }
-                    // setting the content into info window
-                    infowindow.setContent("<strong>"+location.name +"</strong><br><a href='"+location.content+"'>Click here for Wikipedia post</a>");
-                    infowindow.open(map, location.marker);
-                });
+                        } else {
+                            location.marker.setAnimation(google.maps.Animation.BOUNCE);
+                            window.setTimeout(function() {
+                                location.marker.setAnimation(null);
+                            }, 1500);
+                        }
+                        // setting the content into info window
+                        infowindow.setContent("<strong>"+location.name +"</strong><br><a href='"+location.content+"'>Click here for Wikipedia post</a>");
+                        infowindow.open(map, location.marker);
+                    });
+                }
             },
             error: function (errorMessage) {
-                location.marker.addListener('click', function() {
-                    infowindow.setContent("Error Loading data");
-                    infowindow.open(map, location.marker);
-                });
-                console.log(errorMessage);
+                if(location.marker){
+                    location.marker.addListener('click', function() {
+                        infowindow.setContent("Error Loading data");
+                        infowindow.open(map, location.marker);
+                    });
+                }
+                console.log(errorMessage.statusText +" API couldn't be called due to internet issue");
             }
         });
     });
+}
+
+function error(){
+    alert("Error Loading the map")
 }
