@@ -156,5 +156,5 @@ function setContent()
 }
 
 function error(){
-    alert("Error Loading the map")
+    alert("Error Loading the map");
 }
