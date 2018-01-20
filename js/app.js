@@ -149,7 +149,7 @@ function setContent()
                         infowindow.open(map, location.marker);
                     });
                 }
-                console.log(errorMessage.statusText +" API couldn't be called due to internet issue");
+                alert(errorMessage.statusText +" API couldn't be called due to internet issue");
             }
         });
     });
